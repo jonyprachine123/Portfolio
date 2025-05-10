@@ -29,6 +29,13 @@ def save_uploaded_file(file):
         return f"/static/uploads/projects/{unique_filename}"
     return None
 
+# Custom Jinja2 filters
+@app.template_filter('nl2br')
+def nl2br(value):
+    if value:
+        return value.replace('\n', '<br>')
+    return ''
+
 # Initialize extensions
 db.init_app(app)
 login_manager = LoginManager(app)
