@@ -65,7 +65,7 @@ def track_visitor():
 @app.route('/')
 def index():
     settings = SiteSettings.query.first()
-    featured_projects = Project.query.filter_by(featured=True).limit(2).all()
+    featured_projects = Project.query.filter_by(featured=True).all()
     skills = Skill.query.all()
     experiences = Experience.query.order_by(Experience.start_date.desc()).all()
     educations = Education.query.order_by(Education.year.desc()).all()

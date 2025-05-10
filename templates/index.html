@@ -96,26 +96,27 @@
     <div class="container">
         <h2 class="text-center mb-5">Featured Projects</h2>
         <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title">Smart FAQ Chatbot</h3>
-                        <p class="card-text text-muted mb-3">Powered by LangChain AI</p>
-                        <p class="card-text">Revolutionizing E-Commerce with Intelligent Shopping Assistance</p>
-                        <a href="{{ url_for('projects') }}" class="btn btn-outline-primary mt-3">View Details</a>
+            {% if featured_projects %}
+                {% for project in featured_projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if project.image_url %}
+                        <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h3 class="card-title h5">{{ project.title }}</h3>
+                            <p class="card-text text-muted mb-2">{{ project.category }}</p>
+                            <p class="card-text small">{{ project.description | truncate(100) }}</p>
+                            <a href="{{ url_for('projects', project_id=project.id) }}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title">Clinical Text Classification</h3>
-                        <p class="card-text text-muted mb-3">Deep Learning Approaches</p>
-                        <p class="card-text">BSc Thesis project focused on medical text classification using advanced deep learning techniques</p>
-                        <a href="{{ url_for('projects') }}" class="btn btn-outline-primary mt-3">View Details</a>
-                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <p>No featured projects available at the moment.</p>
                 </div>
-            </div>
+            {% endif %}
         </div>
         <div class="text-center mt-4">
             <a href="{{ url_for('projects') }}" class="btn btn-primary">View All Projects</a>
