@@ -1,174 +1,351 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="hero-section py-5 d-flex align-items-center">
-    <div class="container mt-5">
+<!-- Hero Section with Minimalist Design -->
+<section class="hero-section min-vh-100 d-flex align-items-center" style="background-color: #f8f9fa;">
+    <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold">Shamim MD Jony</h1>
-                <h2 class="mb-4">Machine Learning Engineer</h2>
-                <p class="lead mb-4">
-                    Experienced machine learning enthusiast with expertise in developing and deploying 
-                    machine learning models and large language models (LLMs). Proficient in deep learning, 
-                    computer vision, and NLP, with a focus on building scalable AI solutions.
-                </p>
-                <div class="d-flex gap-3">
-                    <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg">View Projects</a>
-                    <a href="{{ url_for('contact') }}" class="btn btn-outline-dark btn-lg">Contact Me</a>
-                    {% if settings.resume_file %}
-                    <a href="{{ settings.resume_file }}" class="btn btn-outline-success btn-lg" target="_blank">
-                        <i class="bi bi-file-earmark-pdf"></i> Download Resume
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-lg-6 text-center">
-                <div class="profile-img-container mt-5 mt-lg-0">
+            <div class="col-lg-6 order-lg-2">
+                <div class="profile-img-container text-center mb-5 mb-lg-0">
                     {% if settings.profile_image %}
-                    <img src="{{ settings.profile_image }}" alt="Shamim MD Jony" class="rounded-circle mx-auto d-block img-fluid" style="width: 300px; height: 300px; object-fit: cover;">
+                    <div class="position-relative d-inline-block">
+                        <img src="{{ settings.profile_image }}" alt="Shamim MD Jony" class="img-fluid rounded-3" style="width: 380px; height: 380px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+                        <div class="position-absolute" style="width: 100%; height: 100%; border: 3px solid #4361ee; border-radius: 0.5rem; top: 15px; left: 15px; z-index: -1;"></div>
+                    </div>
                     {% else %}
                     <!-- Placeholder for profile image -->
-                    <div class="profile-placeholder d-flex align-items-center justify-content-center bg-light rounded-circle mx-auto" style="width: 300px; height: 300px;">
-                        <span class="display-1 text-muted">SJ</span>
+                    <div class="position-relative d-inline-block">
+                        <div class="profile-placeholder d-flex align-items-center justify-content-center bg-white rounded-3" style="width: 380px; height: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+                            <span class="display-1 text-muted">SJ</span>
+                        </div>
+                        <div class="position-absolute" style="width: 100%; height: 100%; border: 3px solid #4361ee; border-radius: 0.5rem; top: 15px; left: 15px; z-index: -1;"></div>
                     </div>
                     {% endif %}
                 </div>
             </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="pe-lg-5">
+                    <p class="text-primary fw-bold mb-1" style="letter-spacing: 2px; font-size: 0.9rem;">MACHINE LEARNING ENGINEER</p>
+                    <h1 class="display-4 fw-bold mb-4" style="font-size: 3.5rem; line-height: 1.2;">Shamim MD Jony</h1>
+                    <p class="lead mb-5" style="color: #6c757d; font-weight: 400; font-size: 1.15rem; line-height: 1.8;">
+                        Experienced machine learning specialist with expertise in developing and deploying AI solutions. Focused on creating scalable applications with deep learning, computer vision, and natural language processing.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ url_for('projects') }}" class="btn btn-primary px-4 py-3" style="border-radius: 0; font-weight: 500; letter-spacing: 1px;">EXPLORE WORK</a>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-dark px-4 py-3" style="border-radius: 0; font-weight: 500; letter-spacing: 1px;">GET IN TOUCH</a>
+                        {% if settings.resume_file %}
+                        <a href="{{ settings.resume_file }}" class="btn btn-outline-primary px-4 py-3" style="border-radius: 0; font-weight: 500; letter-spacing: 1px;" target="_blank">
+                            <i class="bi bi-file-earmark-pdf me-2"></i>RESUME
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="skills-section py-5 bg-light">
+<section class="skills-section py-5 my-5">
     <div class="container">
-        <h2 class="text-center mb-5">Technical Skills</h2>
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <p class="text-primary fw-bold mb-2" style="letter-spacing: 2px; font-size: 0.9rem;">EXPERTISE</p>
+                <h2 class="display-5 fw-bold mb-3">Technical Skills</h2>
+                <div class="divider mx-auto my-3" style="width: 50px; height: 3px; background-color: #4361ee;"></div>
+                <p class="text-muted">Specialized in cutting-edge technologies and frameworks for AI and machine learning applications</p>
+            </div>
+        </div>
+        
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title h5">
-                            <i class="bi bi-braces-asterisk me-2"></i>Machine Learning & AI
-                        </h3>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Large Language Models (LLMs)</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>LLMs Fine-Tuning</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Computer Vision</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Natural Language Processing (NLP)</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Deep Learning</li>
-                        </ul>
+                <div class="skill-card p-4 h-100" style="background-color: #f8f9fa; border-left: 4px solid #4361ee; transition: all 0.3s ease;">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="skill-icon me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(67, 97, 238, 0.1); border-radius: 12px;">
+                            <i class="bi bi-braces-asterisk text-primary" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 class="h5 mb-0 fw-bold">Machine Learning & AI</h3>
                     </div>
+                    <ul class="list-unstyled mb-0" style="line-height: 2;">
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Deep Learning</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Natural Language Processing</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Computer Vision</span>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Large Language Models</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title h5">
-                            <i class="bi bi-code-square me-2"></i>Programming & Development
-                        </h3>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Python, C, C++, Java, PHP</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>HTML, CSS, JavaScript</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>FastAPI, Flask, PHP Laravel</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Database Management (MySQL, SQLite, MongoDB)</li>
-                        </ul>
+                <div class="skill-card p-4 h-100" style="background-color: #f8f9fa; border-left: 4px solid #4361ee; transition: all 0.3s ease;">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="skill-icon me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(67, 97, 238, 0.1); border-radius: 12px;">
+                            <i class="bi bi-code-slash text-primary" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 class="h5 mb-0 fw-bold">Programming & Frameworks</h3>
                     </div>
+                    <ul class="list-unstyled mb-0" style="line-height: 2;">
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Python, TensorFlow, PyTorch</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Flask, FastAPI</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>JavaScript, React</span>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>SQL, MongoDB</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title h5">
-                            <i class="bi bi-cloud-fill me-2"></i>Deployment & Infrastructure
-                        </h3>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Model Deployment (AWS, Google Cloud)</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>AWS Lightsail Server Management</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>API Development</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Third-party Service Integrations</li>
-                        </ul>
+                <div class="skill-card p-4 h-100" style="background-color: #f8f9fa; border-left: 4px solid #4361ee; transition: all 0.3s ease;">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="skill-icon me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(67, 97, 238, 0.1); border-radius: 12px;">
+                            <i class="bi bi-cloud-fill text-primary" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 class="h5 mb-0 fw-bold">DevOps & Deployment</h3>
                     </div>
+                    <ul class="list-unstyled mb-0" style="line-height: 2;">
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Model Deployment (AWS, GCP)</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>AWS Lightsail Server Management</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>API Development</span>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <span class="me-2" style="color: #4361ee;">▹</span>
+                            <span>Third-party Service Integrations</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="featured-projects py-5">
+<section class="featured-projects py-5 my-5" style="background-color: #f8f9fa;">
     <div class="container">
-        <h2 class="text-center mb-5">Featured Projects</h2>
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <p class="text-primary fw-bold mb-2" style="letter-spacing: 2px; font-size: 0.9rem;">PORTFOLIO</p>
+                <h2 class="display-5 fw-bold mb-3">Featured Projects</h2>
+                <div class="divider mx-auto my-3" style="width: 50px; height: 3px; background-color: #4361ee;"></div>
+                <p class="text-muted">Showcasing my best work in machine learning and AI development</p>
+            </div>
+        </div>
+        
         <div class="row g-4">
             {% if featured_projects %}
                 {% for project in featured_projects %}
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                    <div class="project-card position-relative h-100" style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s ease;">
                         {% if project.image_url %}
-                        <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
+                        <div class="project-image" style="height: 220px; overflow: hidden;">
+                            <img src="{{ project.image_url }}" alt="{{ project.title }}" class="w-100 h-100" style="object-fit: cover; transition: transform 0.5s ease;">
+                        </div>
+                        {% else %}
+                        <div class="project-image bg-light d-flex align-items-center justify-content-center" style="height: 220px;">
+                            <i class="bi bi-code-square text-muted" style="font-size: 3rem;"></i>
+                        </div>
                         {% endif %}
-                        <div class="card-body">
-                            <h3 class="card-title h5">{{ project.title }}</h3>
-                            <p class="card-text text-muted mb-2">{{ project.category }}</p>
-                            <p class="card-text small">{{ project.description | truncate(100) }}</p>
-                            <a href="{{ url_for('projects', project_id=project.id) }}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+                        
+                        <div class="project-content p-4 bg-white">
+                            <div class="project-category mb-2">
+                                <span class="badge" style="background-color: #4361ee; font-weight: 500; padding: 6px 12px; border-radius: 30px;">{{ project.category }}</span>
+                            </div>
+                            <h3 class="h5 fw-bold mb-3">{{ project.title }}</h3>
+                            <p class="text-muted mb-4" style="font-size: 0.9rem; line-height: 1.6;">{{ project.description | truncate(100) }}</p>
+                            <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-link text-primary p-0 fw-bold" style="text-decoration: none; font-size: 0.9rem;">
+                                View Details <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             {% else %}
-                <div class="col-12 text-center">
-                    <p>No featured projects available at the moment.</p>
+                <div class="col-12 text-center py-5">
+                    <div class="empty-state">
+                        <i class="bi bi-folder text-muted mb-3" style="font-size: 3rem;"></i>
+                        <p class="text-muted">No featured projects available at the moment.</p>
+                    </div>
                 </div>
             {% endif %}
         </div>
-        <div class="text-center mt-4">
-            <a href="{{ url_for('projects') }}" class="btn btn-primary">View All Projects</a>
+        
+        <div class="text-center mt-5">
+            <a href="{{ url_for('projects') }}" class="btn btn-primary px-4 py-3" style="border-radius: 0; font-weight: 500; letter-spacing: 1px;">VIEW ALL PROJECTS</a>
         </div>
     </div>
 </section>
 
-<section class="experience-section py-5 bg-light">
+<section class="experience-section py-5 my-5">
     <div class="container">
-        <h2 class="text-center mb-5">Professional Experience</h2>
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3 class="h5 mb-0">Software Engineer</h3>
-                    <span class="badge bg-primary">November 2024 - Present</span>
-                </div>
-                <h4 class="h6 text-muted">Prachine Bangla Ecommerce Limited</h4>
-                <ul class="mt-3">
-                    <li>Managing the main AWS Lightsail server infrastructure</li>
-                    <li>Developing and scaling e-commerce solutions to support high traffic and large product catalogs</li>
-                    <li>Integrating AI-powered chatbots to improve customer support and engagement</li>
-                    <li>Collaborating on API development and third-party service integrations (payment gateways, shipping, etc.)</li>
-                </ul>
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <p class="text-primary fw-bold mb-2" style="letter-spacing: 2px; font-size: 0.9rem;">WORK HISTORY</p>
+                <h2 class="display-5 fw-bold mb-3">Professional Experience</h2>
+                <div class="divider mx-auto my-3" style="width: 50px; height: 3px; background-color: #4361ee;"></div>
+                <p class="text-muted">Building expertise through hands-on experience in AI and software development</p>
             </div>
+        </div>
+        
+        <div class="timeline position-relative">
+            <!-- Timeline line -->
+            <div class="timeline-line position-absolute" style="top: 0; bottom: 0; left: 50%; width: 2px; background-color: #e9ecef;"></div>
+            
+            <!-- Experience item -->
+            <div class="row mb-5">
+                <div class="col-md-6 pe-md-5 text-md-end">
+                    <div class="timeline-date mb-2">
+                        <span class="badge" style="background-color: #4361ee; font-weight: 500; padding: 8px 16px; border-radius: 30px;">November 2024 - Present</span>
+                    </div>
+                    <h3 class="h5 fw-bold mb-1">Software Engineer</h3>
+                    <p class="text-muted mb-0">Prachine Bangla Ecommerce Limited</p>
+                </div>
+                
+                <div class="col-md-6 ps-md-5">
+                    <div class="timeline-content p-4" style="background-color: #f8f9fa; border-left: 4px solid #4361ee; border-radius: 4px;">
+                        <ul class="list-unstyled mb-0" style="line-height: 1.8;">
+                            <li class="d-flex mb-3">
+                                <span class="me-2" style="color: #4361ee;">▹</span>
+                                <span>Managing the main AWS Lightsail server infrastructure</span>
+                            </li>
+                            <li class="d-flex mb-3">
+                                <span class="me-2" style="color: #4361ee;">▹</span>
+                                <span>Developing and scaling e-commerce solutions to support high traffic and large product catalogs</span>
+                            </li>
+                            <li class="d-flex mb-3">
+                                <span class="me-2" style="color: #4361ee;">▹</span>
+                                <span>Integrating AI-powered chatbots to improve customer support and engagement</span>
+                            </li>
+                            <li class="d-flex">
+                                <span class="me-2" style="color: #4361ee;">▹</span>
+                                <span>Collaborating on API development and third-party service integrations (payment gateways, shipping, etc.)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add more experience items here -->
+            {% for experience in experiences %}
+            {% if loop.index > 1 %} <!-- Skip the first one since we hardcoded it above -->
+            <div class="row mb-5">
+                <div class="col-md-6 pe-md-5 text-md-end">
+                    <div class="timeline-date mb-2">
+                        <span class="badge" style="background-color: #4361ee; font-weight: 500; padding: 8px 16px; border-radius: 30px;">
+                            {{ experience.start_date.strftime('%B %Y') }} - 
+                            {% if experience.end_date %}{{ experience.end_date.strftime('%B %Y') }}{% else %}Present{% endif %}
+                        </span>
+                    </div>
+                    <h3 class="h5 fw-bold mb-1">{{ experience.title }}</h3>
+                    <p class="text-muted mb-0">{{ experience.company }}</p>
+                </div>
+                
+                <div class="col-md-6 ps-md-5">
+                    <div class="timeline-content p-4" style="background-color: #f8f9fa; border-left: 4px solid #4361ee; border-radius: 4px;">
+                        <p class="mb-0">{{ experience.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<section class="education-section py-5">
+<section class="education-section py-5 my-5" style="background-color: #f8f9fa;">
     <div class="container">
-        <h2 class="text-center mb-5">Education</h2>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="h5">Bachelor of Science in CSE (BSc)</h3>
-                        <p class="text-muted">Port City International University</p>
-                        <p><strong>Passing year:</strong> 2023</p>
-                        <p><strong>CGPA:</strong> 3.88 out of 4</p>
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <p class="text-primary fw-bold mb-2" style="letter-spacing: 2px; font-size: 0.9rem;">ACADEMIC BACKGROUND</p>
+                <h2 class="display-5 fw-bold mb-3">Education</h2>
+                <div class="divider mx-auto my-3" style="width: 50px; height: 3px; background-color: #4361ee;"></div>
+                <p class="text-muted">Academic qualifications that have prepared me for a career in AI and machine learning</p>
+            </div>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            {% for education in educations %}
+            <div class="col-md-5 mb-4">
+                <div class="education-card p-4 h-100" style="background-color: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+                    <div class="education-year mb-3">
+                        <span class="badge" style="background-color: #4361ee; font-weight: 500; padding: 6px 12px; border-radius: 30px;">{{ education.year }}</span>
+                    </div>
+                    <h3 class="h5 fw-bold mb-2">{{ education.degree }}</h3>
+                    <p class="text-muted mb-3">{{ education.institution }}</p>
+                    
+                    {% if education.description %}
+                    <div class="education-details mb-3" style="font-size: 0.9rem; line-height: 1.6;">
+                        <p class="mb-0">{{ education.description }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if education.gpa %}
+                    <div class="education-gpa">
+                        <span class="badge bg-light text-dark" style="font-weight: 500; padding: 6px 12px; border-radius: 30px;">
+                            <i class="bi bi-award me-1 text-primary"></i> GPA: {{ education.gpa }}
+                        </span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <!-- Fallback if no education data is available -->
+            <div class="col-md-5 mb-4">
+                <div class="education-card p-4 h-100" style="background-color: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div class="education-year mb-3">
+                        <span class="badge" style="background-color: #4361ee; font-weight: 500; padding: 6px 12px; border-radius: 30px;">2020 - 2024</span>
+                    </div>
+                    <h3 class="h5 fw-bold mb-2">BSc in Computer Science & Engineering</h3>
+                    <p class="text-muted mb-3">International Islamic University Chittagong</p>
+                    <div class="education-gpa">
+                        <span class="badge bg-light text-dark" style="font-weight: 500; padding: 6px 12px; border-radius: 30px;">
+                            <i class="bi bi-award me-1 text-primary"></i> CGPA: 3.92/4.00
+                        </span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="h5">Diploma in Computer Science & Engineering</h3>
-                        <p class="text-muted">Landmark Polytechnic Institute</p>
-                        <p><strong>Passing year:</strong> 2017</p>
-                        <p><strong>CGPA:</strong> 3.59 out of 4</p>
+            
+            <div class="col-md-5 mb-4">
+                <div class="education-card p-4 h-100" style="background-color: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div class="education-year mb-3">
+                        <span class="badge" style="background-color: #4361ee; font-weight: 500; padding: 6px 12px; border-radius: 30px;">2017 - 2019</span>
+                    </div>
+                    <h3 class="h5 fw-bold mb-2">Higher Secondary Certificate (HSC)</h3>
+                    <p class="text-muted mb-3">Govt. City College, Chittagong</p>
+                    <div class="education-gpa">
+                        <span class="badge bg-light text-dark" style="font-weight: 500; padding: 6px 12px; border-radius: 30px;">
+                            <i class="bi bi-award me-1 text-primary"></i> GPA: 5.00/5.00
+                        </span>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>
