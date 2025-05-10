@@ -1,0 +1,79 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Add Certification{% endblock %}
+
+{% block header_title %}Add New Certification{% endblock %}
+
+{% block header_actions %}
+<a href="{{ url_for('manage_certifications') }}" class="btn btn-outline-secondary">
+    <i class="bi bi-arrow-left me-1"></i> Back to Certifications
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('create_certification') }}">
+            {{ form.csrf_token }}
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Certification Name</label>
+                    {{ form.name(class="form-control" + (" is-invalid" if form.name.errors else "")) }}
+                    {% if form.name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="issuer" class="form-label">Issuer</label>
+                    {{ form.issuer(class="form-control" + (" is-invalid" if form.issuer.errors else "")) }}
+                    {% if form.issuer.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.issuer.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="year" class="form-label">Year</label>
+                    {{ form.year(class="form-control" + (" is-invalid" if form.year.errors else ""), type="number") }}
+                    {% if form.year.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.year.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="url" class="form-label">URL</label>
+                    {{ form.url(class="form-control" + (" is-invalid" if form.url.errors else "")) }}
+                    {% if form.url.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.url.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="form-text">URL to the certification (if available)</div>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+                <a href="{{ url_for('manage_certifications') }}" class="btn btn-outline-secondary me-2">Cancel</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i> Save Certification
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

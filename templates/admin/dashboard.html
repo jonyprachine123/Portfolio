@@ -1,0 +1,265 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-stats">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-kanban text-primary"></i>
+                    <h5 class="card-title">Projects</h5>
+                    <p class="card-text display-6">{{ project_count }}</p>
+                    <a href="{{ url_for('manage_projects') }}" class="btn btn-sm btn-outline-primary">Manage Projects</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-lightning-charge text-warning"></i>
+                    <h5 class="card-title">Skills</h5>
+                    <p class="card-text display-6">{{ skill_count }}</p>
+                    <a href="{{ url_for('manage_skills') }}" class="btn btn-sm btn-outline-primary">Manage Skills</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-envelope text-danger"></i>
+                    <h5 class="card-title">Unread Messages</h5>
+                    <p class="card-text display-6">{{ unread_message_count }}</p>
+                    <a href="{{ url_for('manage_messages') }}" class="btn btn-sm btn-outline-primary">View Messages</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-briefcase text-info"></i>
+                    <h5 class="card-title">Experience</h5>
+                    <p class="card-text display-6">{{ experience_count }}</p>
+                    <a href="{{ url_for('manage_experiences') }}" class="btn btn-sm btn-outline-primary">Manage Experience</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-book text-success"></i>
+                    <h5 class="card-title">Education</h5>
+                    <p class="card-text display-6">{{ education_count }}</p>
+                    <a href="{{ url_for('manage_educations') }}" class="btn btn-sm btn-outline-primary">Manage Education</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-award text-secondary"></i>
+                    <h5 class="card-title">Certifications</h5>
+                    <p class="card-text display-6">{{ certification_count }}</p>
+                    <a href="{{ url_for('manage_certifications') }}" class="btn btn-sm btn-outline-primary">Manage Certifications</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Quick Actions</span>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a href="{{ url_for('create_project') }}" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-plus-circle me-2"></i>Add Project
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('create_skill') }}" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-plus-circle me-2"></i>Add Skill
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('create_experience') }}" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-plus-circle me-2"></i>Add Experience
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('site_settings') }}" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-gear me-2"></i>Edit Settings
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-graph-up"></i> Visitor Analytics</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Total Visitors</h5>
+                                <p class="display-4">{{ total_visitors }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Today's Visitors</h5>
+                                <p class="display-4">{{ today_visitors }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5 class="mt-4 mb-3">Most Visited Pages</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>Page</th>
+                                <th class="text-end">Visits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for page in page_visits %}
+                            <tr>
+                                <td>{{ page.page }}</td>
+                                <td class="text-end">{{ page.count }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="2" class="text-center">No data available</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h5 class="mt-4 mb-3">Visitors by Date (Last 7 Days)</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th class="text-end">Visits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for date_data in visitors_by_date %}
+                            <tr>
+                                <td>{{ date_data.visit_date.strftime('%Y-%m-%d') }}</td>
+                                <td class="text-end">{{ date_data.count }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="2" class="text-center">No data available</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <span>Recent Messages</span>
+                <a href="{{ url_for('manage_messages') }}" class="btn btn-sm btn-light">View All</a>
+            </div>
+            <div class="card-body p-0">
+                {% if recent_messages %}
+                <div class="list-group list-group-flush">
+                    {% for message in recent_messages %}
+                    <a href="{{ url_for('view_message', id=message.id) }}" class="list-group-item list-group-item-action{% if not message.read %} list-group-item-warning{% endif %}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">{{ message.subject }}</h6>
+                            <small>{{ message.created_at.strftime('%b %d, %Y') }}</small>
+                        </div>
+                        <p class="mb-1 text-truncate">{{ message.message }}</p>
+                        <small>From: {{ message.name }} ({{ message.email }})</small>
+                        {% if not message.read %}<span class="badge bg-danger ms-2">New</span>{% endif %}
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="p-3 text-center">
+                    <p class="text-muted mb-0">No messages yet.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <span>Recent Projects</span>
+                <a href="{{ url_for('manage_projects') }}" class="btn btn-sm btn-light">View All</a>
+            </div>
+            <div class="card-body p-0">
+                {% if recent_projects %}
+                <div class="list-group list-group-flush">
+                    {% for project in recent_projects %}
+                    <a href="{{ url_for('edit_project', id=project.id) }}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">{{ project.title }}</h6>
+                            <small>{{ project.created_at.strftime('%b %d, %Y') }}</small>
+                        </div>
+                        <p class="mb-1 text-truncate">{{ project.description }}</p>
+                        <small>Category: <span class="badge bg-primary">{{ project.category }}</span></small>
+                        {% if project.featured %}<span class="badge bg-success ms-2">Featured</span>{% endif %}
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="p-3 text-center">
+                    <p class="text-muted mb-0">No projects added yet.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                <span>Welcome to Your Portfolio Dashboard</span>
+            </div>
+            <div class="card-body">
+                <p>This dashboard allows you to manage all aspects of your portfolio website. Use the navigation menu to access different sections.</p>
+                <p>Here's what you can do:</p>
+                <ul>
+                    <li>Manage your projects, skills, experience, education, and certifications</li>
+                    <li>View and respond to contact messages from visitors</li>
+                    <li>Update your site settings including your profile information</li>
+                    <li>Change your password for security</li>
+                </ul>
+                <p>Need help? Refer to the documentation or contact support.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

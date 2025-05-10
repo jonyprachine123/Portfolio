@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - Shamim MD Jony{% endblock %}
+
+{% block content %}
+<section class="contact-header py-5 bg-light">
+    <div class="container mt-5">
+        <h1 class="display-4 text-center mb-3">Contact Me</h1>
+        <p class="lead text-center mb-5">
+            Feel free to reach out if you're interested in collaborating on a project or have any questions.
+        </p>
+    </div>
+</section>
+
+<section class="contact-content py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title h4 mb-4">Contact Information</h2>
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-center mb-4">
+                                <div class="icon-box bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h6 mb-1">Location</h3>
+                                    <p class="mb-0">Khulshi-1, Chittagong, Bangladesh</p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-4">
+                                <div class="icon-box bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="bi bi-phone-fill"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h6 mb-1">Phone</h3>
+                                    <p class="mb-0">+8801816435862</p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-4">
+                                <div class="icon-box bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h6 mb-1">Email</h3>
+                                    <p class="mb-0">
+                                        <a href="mailto:shamimjonym@gmail.com" class="text-decoration-none">shamimjonym@gmail.com</a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="icon-box bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="bi bi-linkedin"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h6 mb-1">LinkedIn</h3>
+                                    <p class="mb-0">
+                                        <a href="https://www.linkedin.com/in/shamimjony-9b38662a0" target="_blank" class="text-decoration-none">linkedin.com/in/shamimjony-9b38662a0</a>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title h4 mb-4">Send Me a Message</h2>
+                        <form action="{{ url_for('contact') }}" method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

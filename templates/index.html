@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero-section py-5 d-flex align-items-center">
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">Shamim MD Jony</h1>
+                <h2 class="mb-4">Machine Learning Engineer</h2>
+                <p class="lead mb-4">
+                    Experienced machine learning enthusiast with expertise in developing and deploying 
+                    machine learning models and large language models (LLMs). Proficient in deep learning, 
+                    computer vision, and NLP, with a focus on building scalable AI solutions.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg">View Projects</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-dark btn-lg">Contact Me</a>
+                    {% if settings.resume_file %}
+                    <a href="{{ settings.resume_file }}" class="btn btn-outline-success btn-lg" target="_blank">
+                        <i class="bi bi-file-earmark-pdf"></i> Download Resume
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="profile-img-container mt-5 mt-lg-0">
+                    {% if settings.profile_image %}
+                    <img src="{{ settings.profile_image }}" alt="Shamim MD Jony" class="rounded-circle mx-auto d-block img-fluid" style="width: 300px; height: 300px; object-fit: cover;">
+                    {% else %}
+                    <!-- Placeholder for profile image -->
+                    <div class="profile-placeholder d-flex align-items-center justify-content-center bg-light rounded-circle mx-auto" style="width: 300px; height: 300px;">
+                        <span class="display-1 text-muted">SJ</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="skills-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Technical Skills</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title h5">
+                            <i class="bi bi-braces-asterisk me-2"></i>Machine Learning & AI
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Large Language Models (LLMs)</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>LLMs Fine-Tuning</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Computer Vision</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Natural Language Processing (NLP)</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Deep Learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title h5">
+                            <i class="bi bi-code-square me-2"></i>Programming & Development
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Python, C, C++, Java, PHP</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>HTML, CSS, JavaScript</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>FastAPI, Flask, PHP Laravel</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Database Management (MySQL, SQLite, MongoDB)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title h5">
+                            <i class="bi bi-cloud-fill me-2"></i>Deployment & Infrastructure
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Model Deployment (AWS, Google Cloud)</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>AWS Lightsail Server Management</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>API Development</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Third-party Service Integrations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-projects py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Featured Projects</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Smart FAQ Chatbot</h3>
+                        <p class="card-text text-muted mb-3">Powered by LangChain AI</p>
+                        <p class="card-text">Revolutionizing E-Commerce with Intelligent Shopping Assistance</p>
+                        <a href="{{ url_for('projects') }}" class="btn btn-outline-primary mt-3">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Clinical Text Classification</h3>
+                        <p class="card-text text-muted mb-3">Deep Learning Approaches</p>
+                        <p class="card-text">BSc Thesis project focused on medical text classification using advanced deep learning techniques</p>
+                        <a href="{{ url_for('projects') }}" class="btn btn-outline-primary mt-3">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('projects') }}" class="btn btn-primary">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<section class="experience-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Professional Experience</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="h5 mb-0">Software Engineer</h3>
+                    <span class="badge bg-primary">November 2024 - Present</span>
+                </div>
+                <h4 class="h6 text-muted">Prachine Bangla Ecommerce Limited</h4>
+                <ul class="mt-3">
+                    <li>Managing the main AWS Lightsail server infrastructure</li>
+                    <li>Developing and scaling e-commerce solutions to support high traffic and large product catalogs</li>
+                    <li>Integrating AI-powered chatbots to improve customer support and engagement</li>
+                    <li>Collaborating on API development and third-party service integrations (payment gateways, shipping, etc.)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="education-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Education</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Bachelor of Science in CSE (BSc)</h3>
+                        <p class="text-muted">Port City International University</p>
+                        <p><strong>Passing year:</strong> 2023</p>
+                        <p><strong>CGPA:</strong> 3.88 out of 4</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Diploma in Computer Science & Engineering</h3>
+                        <p class="text-muted">Landmark Polytechnic Institute</p>
+                        <p><strong>Passing year:</strong> 2017</p>
+                        <p><strong>CGPA:</strong> 3.59 out of 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="certifications-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Certifications</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">LangChain Chat with Your Data!</h3>
+                        <p class="text-muted">deeplearning.ai</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">ChatGPT Prompt Engineering for Developers</h3>
+                        <p class="text-muted">deeplearning.ai</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

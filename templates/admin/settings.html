@@ -1,0 +1,195 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Site Settings{% endblock %}
+
+{% block header_title %}Site Settings{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('site_settings') }}">
+            {{ form.csrf_token }}
+            
+            <h5 class="mb-3">General Settings</h5>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="site_title" class="form-label">Site Title</label>
+                    {{ form.site_title(class="form-control" + (" is-invalid" if form.site_title.errors else "")) }}
+                    {% if form.site_title.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.site_title.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="form-text">Title that appears in browser tabs</div>
+                </div>
+            </div>
+            
+            <h5 class="mb-3">Hero Section</h5>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="hero_title" class="form-label">Hero Title</label>
+                    {{ form.hero_title(class="form-control" + (" is-invalid" if form.hero_title.errors else "")) }}
+                    {% if form.hero_title.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.hero_title.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="form-text">Your name or main title on the homepage</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="hero_subtitle" class="form-label">Hero Subtitle</label>
+                    {{ form.hero_subtitle(class="form-control" + (" is-invalid" if form.hero_subtitle.errors else "")) }}
+                    {% if form.hero_subtitle.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.hero_subtitle.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="form-text">Your profession or subtitle</div>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <label for="about_text" class="form-label">About Text</label>
+                {{ form.about_text(class="form-control" + (" is-invalid" if form.about_text.errors else ""), rows=4) }}
+                {% if form.about_text.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.about_text.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">Brief description about yourself that appears on the homepage</div>
+            </div>
+            
+            <div class="mb-4">
+                <label for="profile_image" class="form-label">Profile Image URL</label>
+                {{ form.profile_image(class="form-control" + (" is-invalid" if form.profile_image.errors else "")) }}
+                {% if form.profile_image.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.profile_image.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">URL to your profile image (default: /static/images/profile.png)</div>
+                {% if settings.profile_image %}
+                <div class="mt-2">
+                    <img src="{{ settings.profile_image }}" alt="Profile Preview" class="img-thumbnail" style="max-width: 150px;">
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="mb-4">
+                <label for="resume_file" class="form-label">Resume File</label>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        {{ form.resume_file(class="form-control" + (" is-invalid" if form.resume_file.errors else "")) }}
+                        {% if form.resume_file.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.resume_file.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="form-text">URL to your resume file (if already uploaded)</div>
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.resume_file_upload(class="form-control" + (" is-invalid" if form.resume_file_upload.errors else "")) }}
+                        {% if form.resume_file_upload.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.resume_file_upload.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="form-text">Upload a new resume file (PDF or Word document)</div>
+                    </div>
+                </div>
+                {% if settings.resume_file %}
+                <div class="mt-2">
+                    <a href="{{ settings.resume_file }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                        <i class="bi bi-file-earmark-pdf"></i> View Current Resume
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            
+            <h5 class="mb-3">Contact Information</h5>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                    {% if form.email.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone</label>
+                    {{ form.phone(class="form-control" + (" is-invalid" if form.phone.errors else "")) }}
+                    {% if form.phone.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <label for="location" class="form-label">Location</label>
+                {{ form.location(class="form-control" + (" is-invalid" if form.location.errors else "")) }}
+                {% if form.location.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.location.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <h5 class="mb-3">Social Links</h5>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="github_url" class="form-label">GitHub URL</label>
+                    {{ form.github_url(class="form-control" + (" is-invalid" if form.github_url.errors else "")) }}
+                    {% if form.github_url.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.github_url.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="linkedin_url" class="form-label">LinkedIn URL</label>
+                    {{ form.linkedin_url(class="form-control" + (" is-invalid" if form.linkedin_url.errors else "")) }}
+                    {% if form.linkedin_url.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.linkedin_url.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i> Save Settings
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

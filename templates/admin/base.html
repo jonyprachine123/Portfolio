@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %} - Shamim MD Jony Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .sidebar {
+            min-height: 100vh;
+            background-color: #212529;
+            color: white;
+            position: fixed;
+            width: 250px;
+            padding-top: 20px;
+        }
+        
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar .nav-link:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar .nav-link.active {
+            color: white;
+            background-color: #0d6efd;
+        }
+        
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        
+        .header {
+            background-color: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+        }
+        
+        .table {
+            vertical-align: middle;
+        }
+        
+        .dashboard-stats .card {
+            transition: transform 0.3s ease;
+        }
+        
+        .dashboard-stats .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .dashboard-stats .card-body i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                min-height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="text-center mb-4">
+                <h4>Portfolio Admin</h4>
+                <p class="small mb-0">Shamim MD Jony</p>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/projects' in request.path %}active{% endif %}" href="{{ url_for('manage_projects') }}">
+                        <i class="bi bi-kanban"></i> Projects
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/skills' in request.path %}active{% endif %}" href="{{ url_for('manage_skills') }}">
+                        <i class="bi bi-lightning-charge"></i> Skills
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/experiences' in request.path %}active{% endif %}" href="{{ url_for('manage_experiences') }}">
+                        <i class="bi bi-briefcase"></i> Experience
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/educations' in request.path %}active{% endif %}" href="{{ url_for('manage_educations') }}">
+                        <i class="bi bi-mortarboard"></i> Education
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/certifications' in request.path %}active{% endif %}" href="{{ url_for('manage_certifications') }}">
+                        <i class="bi bi-award"></i> Certifications
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/messages' in request.path %}active{% endif %}" href="{{ url_for('manage_messages') }}">
+                        <i class="bi bi-envelope"></i> Messages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/settings' in request.path %}active{% endif %}" href="{{ url_for('site_settings') }}">
+                        <i class="bi bi-gear"></i> Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/dashboard/change-password' in request.path %}active{% endif %}" href="{{ url_for('change_password') }}">
+                        <i class="bi bi-key"></i> Change Password
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a class="nav-link" href="{{ url_for('logout') }}">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a class="nav-link" href="{{ url_for('index') }}" target="_blank">
+                        <i class="bi bi-house"></i> View Site
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content flex-grow-1">
+            <div class="header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">{% block header_title %}Dashboard{% endblock %}</h4>
+                <div>
+                    {% block header_actions %}{% endblock %}
+                </div>
+            </div>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Main Content -->
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

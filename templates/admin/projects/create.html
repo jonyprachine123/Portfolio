@@ -1,0 +1,155 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Add Project{% endblock %}
+
+{% block header_title %}Add New Project{% endblock %}
+
+{% block header_actions %}
+<a href="{{ url_for('manage_projects') }}" class="btn btn-outline-secondary">
+    <i class="bi bi-arrow-left me-1"></i> Back to Projects
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1 class="h2 mb-4">Add New Project</h1>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('create_project') }}" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="title" class="form-label">Project Title</label>
+                    {{ form.title(class="form-control" + (" is-invalid" if form.title.errors else "")) }}
+                    {% if form.title.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="category" class="form-label">Category</label>
+                    {{ form.category(class="form-control" + (" is-invalid" if form.category.errors else "")) }}
+                    {% if form.category.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.category.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                {{ form.description(class="form-control" + (" is-invalid" if form.description.errors else ""), rows=5) }}
+                {% if form.description.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">Describe your project in detail. You can use plain text.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="technologies" class="form-label">Technologies</label>
+                {{ form.technologies(class="form-control" + (" is-invalid" if form.technologies.errors else "")) }}
+                {% if form.technologies.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.technologies.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">Enter technologies separated by commas (e.g., Python, TensorFlow, Flask)</div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="mb-3">
+                <label for="image_url" class="form-label">Image URL</label>
+                {{ form.image_url(class="form-control" + (" is-invalid" if form.image_url.errors else "")) }}
+                {% if form.image_url.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.image_url.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">URL to an image for this project (optional)</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="image_upload" class="form-label">Upload Image</label>
+                {{ form.image_upload(class="form-control" + (" is-invalid" if form.image_upload.errors else "")) }}
+                {% if form.image_upload.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.image_upload.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">Upload an image file directly (JPG, PNG, GIF)</div>
+            </div>
+                <div class="col-md-6">
+                    <label for="project_url" class="form-label">Project URL</label>
+                    {{ form.project_url(class="form-control" + (" is-invalid" if form.project_url.errors else "")) }}
+                    {% if form.project_url.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.project_url.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="form-text">URL to the live project (if available)</div>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="github_url" class="form-label">GitHub URL</label>
+                {{ form.github_url(class="form-control" + (" is-invalid" if form.github_url.errors else ""), placeholder="https://github.com/yourusername/project") }}
+                {% if form.github_url.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.github_url.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">Optional GitHub repository URL</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="youtube_url" class="form-label">YouTube Video URL</label>
+                {{ form.youtube_url(class="form-control" + (" is-invalid" if form.youtube_url.errors else ""), placeholder="https://www.youtube.com/watch?v=VIDEO_ID") }}
+                {% if form.youtube_url.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.youtube_url.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-text">Optional YouTube video demonstration URL</div>
+            </div>
+            
+            <div class="mb-4">
+                <div class="form-check">
+                    {{ form.featured(class="form-check-input") }}
+                    <label class="form-check-label" for="featured">
+                        Feature this project on the homepage
+                    </label>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+                <a href="{{ url_for('manage_projects') }}" class="btn btn-outline-secondary me-2">Cancel</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i> Save Project
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

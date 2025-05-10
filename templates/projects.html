@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects - {{ settings.hero_title }}{% endblock %}
+
+{% block content %}
+<section class="projects-header py-5 bg-light">
+    <div class="container mt-5">
+        <h1 class="display-4 text-center mb-5">My Projects</h1>
+        <p class="lead text-center mb-5">
+            Here are some of the key projects I've worked on in machine learning, deep learning, and LLMs.
+            Each project demonstrates my technical skills and approach to solving complex problems.
+        </p>
+    </div>
+</section>
+
+<!-- LLM Projects Section -->
+<section class="llm-projects py-5">
+    <div class="container">
+        <h2 class="mb-4">LLM Projects</h2>
+        <div class="row g-4">
+            {% for project in llm_projects %}
+            <div class="col-md-6">
+                <div class="card h-100">
+                    {% if project.image_url %}
+                    <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title">{{ project.title }}</h3>
+                        <p class="card-text">{{ project.description }}</p>
+                        
+                        {% if project.youtube_url %}
+                        <div class="ratio ratio-16x9 mb-4">
+                            <iframe src="{{ project.youtube_url|replace('watch?v=', 'embed/') }}" title="{{ project.title }}" allowfullscreen></iframe>
+                        </div>
+                        {% endif %}
+                        
+                        <h4 class="h6 mt-4">Technologies Used:</h4>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            {% for tech in project.technologies.split(',') %}
+                            <span class="badge bg-primary">{{ tech.strip() }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0 d-flex gap-2">
+                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary">View Details</a>
+                        {% if project.project_url %}
+                        <a href="{{ project.project_url }}" class="btn btn-outline-primary" target="_blank">Demo</a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-outline-secondary" target="_blank">GitHub</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <p class="text-center">No LLM projects available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ML Projects Section -->
+<section class="ml-projects py-5 bg-light">
+    <div class="container">
+        <h2 class="mb-4">Machine Learning & Deep Learning Projects</h2>
+        <div class="row g-4">
+            {% for project in ml_projects %}
+            <div class="col-md-6">
+                <div class="card h-100">
+                    {% if project.image_url %}
+                    <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title">{{ project.title }}</h3>
+                        <p class="card-text">{{ project.description }}</p>
+                        
+                        {% if project.youtube_url %}
+                        <div class="ratio ratio-16x9 mb-4">
+                            <iframe src="{{ project.youtube_url|replace('watch?v=', 'embed/') }}" title="{{ project.title }}" allowfullscreen></iframe>
+                        </div>
+                        {% endif %}
+                        
+                        <h4 class="h6 mt-4">Technologies Used:</h4>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            {% for tech in project.technologies.split(',') %}
+                            <span class="badge bg-primary">{{ tech.strip() }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0 d-flex gap-2">
+                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary">View Details</a>
+                        {% if project.project_url %}
+                        <a href="{{ project.project_url }}" class="btn btn-outline-primary" target="_blank">Demo</a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-outline-secondary" target="_blank">GitHub</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <p class="text-center">No machine learning projects available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Other Projects Section -->
+<section class="other-projects py-5">
+    <div class="container">
+        <h2 class="mb-4">Other Technical Projects</h2>
+        <div class="row g-4">
+            {% for project in other_projects %}
+            <div class="col-md-6">
+                <div class="card h-100">
+                    {% if project.image_url %}
+                    <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title">{{ project.title }}</h3>
+                        <p class="card-text">{{ project.description }}</p>
+                        
+                        {% if project.youtube_url %}
+                        <div class="ratio ratio-16x9 mb-4">
+                            <iframe src="{{ project.youtube_url|replace('watch?v=', 'embed/') }}" title="{{ project.title }}" allowfullscreen></iframe>
+                        </div>
+                        {% endif %}
+                        
+                        <h4 class="h6 mt-4">Technologies Used:</h4>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            {% for tech in project.technologies.split(',') %}
+                            <span class="badge bg-primary">{{ tech.strip() }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0 d-flex gap-2">
+                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary">View Details</a>
+                        {% if project.project_url %}
+                        <a href="{{ project.project_url }}" class="btn btn-outline-primary" target="_blank">Demo</a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-outline-secondary" target="_blank">GitHub</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <p class="text-center">No other projects available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

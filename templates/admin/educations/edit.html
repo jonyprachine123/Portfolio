@@ -1,0 +1,78 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Edit Education{% endblock %}
+
+{% block header_title %}Edit Education{% endblock %}
+
+{% block header_actions %}
+<a href="{{ url_for('manage_educations') }}" class="btn btn-outline-secondary">
+    <i class="bi bi-arrow-left me-1"></i> Back to Education
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('edit_education', id=education.id) }}">
+            {{ form.csrf_token }}
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="degree" class="form-label">Degree</label>
+                    {{ form.degree(class="form-control" + (" is-invalid" if form.degree.errors else "")) }}
+                    {% if form.degree.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.degree.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="institution" class="form-label">Institution</label>
+                    {{ form.institution(class="form-control" + (" is-invalid" if form.institution.errors else "")) }}
+                    {% if form.institution.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.institution.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="year" class="form-label">Year</label>
+                    {{ form.year(class="form-control" + (" is-invalid" if form.year.errors else ""), type="number") }}
+                    {% if form.year.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.year.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="gpa" class="form-label">GPA</label>
+                    {{ form.gpa(class="form-control" + (" is-invalid" if form.gpa.errors else "")) }}
+                    {% if form.gpa.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.gpa.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+                <a href="{{ url_for('manage_educations') }}" class="btn btn-outline-secondary me-2">Cancel</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i> Update Education
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
